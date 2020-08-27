@@ -1,4 +1,4 @@
-APP_NAME := omo.bla.acm
+APP_NAME := omo-bla-acm
 BUILD_VERSION   := $(shell git tag --contains)
 BUILD_TIME      := $(shell date "+%F %T")
 COMMIT_SHA1     := $(shell git rev-parse HEAD )

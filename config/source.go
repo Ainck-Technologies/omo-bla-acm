@@ -30,28 +30,28 @@ var Schema ConfigSchema_
 
 func setupEnvironment() {
 	//registry plugin
-	registryPlugin := os.Getenv("MSA_REGISTRY_PLUGIN")
+	registryPlugin := os.Getenv("BLA_REGISTRY_PLUGIN")
 	if "" == registryPlugin {
 		registryPlugin = "consul"
 	}
 	os.Setenv("MICRO_REGISTRY", registryPlugin)
 
 	//registry address
-	registryAddress := os.Getenv("MSA_REGISTRY_ADDRESS")
+	registryAddress := os.Getenv("BLA_REGISTRY_ADDRESS")
 	if "" == registryAddress {
 		registryPlugin = "127.0.0.1:8500"
 	}
 	os.Setenv("MICRO_REGISTRY_ADDRESS", registryAddress)
 
 	//config
-	envConfigDefine := os.Getenv("MSA_CONFIG_DEFINE")
+	envConfigDefine := os.Getenv("BLA_CONFIG_DEFINE")
 
 	if "" == envConfigDefine {
-		logger.Warn("MSA_CONFIG_DEFINE is empty")
+		logger.Warn("BLA_CONFIG_DEFINE is empty")
 		return
 	}
 
-	logger.Infof("MSA_CONFIG_DEFINE is %v", envConfigDefine)
+	logger.Infof("BLA_CONFIG_DEFINE is %v", envConfigDefine)
 	err := json.Unmarshal([]byte(envConfigDefine), &configDefine)
 	if err != nil {
 		logger.Error(err)
@@ -113,7 +113,7 @@ func mergeEtcd(_config config.Config) {
 }
 
 func Setup() {
-	mode := os.Getenv("MSA_MODE")
+	mode := os.Getenv("BLA_MODE")
 	if "" == mode {
 		mode = "debug"
 	}
@@ -129,7 +129,7 @@ func Setup() {
 		logger.Info("- Business Logic Agent -> Setup")
 		logger.Info("-------------------------------------------------------------")
 		logger.Warn("Running in \"debug\" mode. Switch to \"release\" mode in production.")
-		logger.Warn("- using env:	export MSA_MODE=release")
+		logger.Warn("- using env:	export BLA_MODE=release")
 	} else {
 		logger.DefaultLogger = logrusPlugin.NewLogger(
 			logger.WithOutput(os.Stdout),
@@ -179,9 +179,9 @@ func Setup() {
 	}
 
 	if "debug" == mode {
-		logger.Warn("Using \"MSA_DEBUG_LOG_LEVEL\" to switch log's level in \"debug\" mode.")
-		logger.Warn("- using env:	export MSA_DEBUG_LOG_LEVEL=debug")
-		debugLogLevel := os.Getenv("MSA_DEBUG_LOG_LEVEL")
+		logger.Warn("Using \"BLA_DEBUG_LOG_LEVEL\" to switch log's level in \"debug\" mode.")
+		logger.Warn("- using env:	export BLA_DEBUG_LOG_LEVEL=debug")
+		debugLogLevel := os.Getenv("BLA_DEBUG_LOG_LEVEL")
 		if "" == debugLogLevel {
 			debugLogLevel = "trace"
 		}
