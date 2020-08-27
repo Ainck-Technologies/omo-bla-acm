@@ -2,7 +2,7 @@ package config
 
 const defaultYAML string = `
 service:
-    name: omo.bla.auth
+    name: omo.bla.acm
     address: :9700
     ttl: 15
     interval: 10
