@@ -14,4 +14,5 @@ client:
     timeout: 2
 msa:
     account: omo.msa.account
+    group: omo.msa.group
 `

@@ -14,7 +14,6 @@ import (
 	"github.com/micro/go-micro/v2"
 	"github.com/micro/go-micro/v2/client"
 	"github.com/micro/go-micro/v2/logger"
-	proto "github.com/xtech-cloud/omo-msp-account/proto/account"
 )
 
 func main() {
@@ -40,13 +39,9 @@ func main() {
 		client.Retry(clientRetry),
 	)
 
-	accountHandler := new(handler.Account)
-	accountHandler.AuthService = proto.NewAuthService(config.Schema.MSA.Account, cli)
-	accountHandler.ProfileService = proto.NewProfileService(config.Schema.MSA.Account, cli)
-
-	// Register Handler
-	proto.RegisterAuthHandler(service.Server(), accountHandler)
-	proto.RegisterProfileHandler(service.Server(), accountHandler)
+	// Setup Handler
+    handler.SetupAccountHandler(service.Server(), cli)
+    handler.SetupGroupHandler(service.Server(), cli)
 
 	app, _ := filepath.Abs(os.Args[0])
 

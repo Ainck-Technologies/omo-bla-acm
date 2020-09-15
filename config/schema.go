@@ -19,6 +19,7 @@ type Client_ struct {
 
 type MSA_ struct {
 	Account string `yaml:account`
+	Group   string `yaml:group`
 }
 
 type ConfigSchema_ struct {
