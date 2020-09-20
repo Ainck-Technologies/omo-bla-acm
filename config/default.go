@@ -3,11 +3,11 @@ package config
 const defaultYAML string = `
 service:
     name: omo.bla.acm
-    address: :9700
+    address: :9701
     ttl: 15
     interval: 10
 logger:
-    level: trace
+    level: info
     dir: /var/log/msa/
 client:
     retry: 3
